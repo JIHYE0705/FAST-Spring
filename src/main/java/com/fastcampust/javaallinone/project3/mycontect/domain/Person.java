@@ -1,8 +1,10 @@
 package com.fastcampust.javaallinone.project3.mycontect.domain;
 
+import com.fastcampust.javaallinone.project3.mycontect.domain.dto.Birthday;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.Valid;
 import java.time.LocalDate;
 
 @Entity
@@ -25,7 +27,11 @@ public class Person {
     @NonNull
     private String bloodType;
     private String address;
-    private LocalDate birthday;
+
+    @Valid
+    @Embedded
+    private Birthday birthday;
+
     private String job;
 
     @ToString.Exclude

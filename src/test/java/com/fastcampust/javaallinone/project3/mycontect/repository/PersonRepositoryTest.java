@@ -2,6 +2,7 @@ package com.fastcampust.javaallinone.project3.mycontect.repository;
 
 
 import com.fastcampust.javaallinone.project3.mycontect.domain.Person;
+import com.fastcampust.javaallinone.project3.mycontect.domain.dto.Birthday;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -59,9 +60,10 @@ class PersonRepositoryTest {
    private void givenPerson(String name, int age, String bloodType){
         givenPerson(name,age,bloodType,null);
    }
+
     private void givenPerson(String name, int age, String bloodType, LocalDate birthday) {
         Person person = new Person(name, age, bloodType);
-        person.setBirthday(birthday);
+        person.setBirthday(new Birthday(birthday));
 
         personRepository.save(person);
     }
@@ -91,7 +93,7 @@ class PersonRepositoryTest {
         givenPerson("benny",6,"A",LocalDate.of(1995,8,30));
 
 
-       List<Person> result = personRepository.findByBirthdayBetween(LocalDate.of(1991,8,1),LocalDate.of(1995,8,31)) ;
+       List<Person> result = personRepository.findByMonthOfBirthday(8);
 
        result.forEach(System.out::println);
     }
