@@ -38,6 +38,14 @@ class PersonServiceTest {
     }
 
     @Test
+    void getPeopleByName() {
+        givenPeople();
+
+        List<Person> result = personService.getPeopleByName("martin");
+        result.forEach(System.out::println);
+    }
+
+    @Test
     void cascadeTest() {
         givenPeople();
 
@@ -88,8 +96,12 @@ class PersonServiceTest {
         personRepository.save(blockPerson);
     }
 
-    private void givenPerson(String name, int age, String bllocType) {
-        personRepository.save(new Person(name,age,bllocType));
+
+    private void givenPerson(String name, int age, String bloodType) {
+        personRepository.save(new Person(name,age,bloodType));
     }
+
+
+
 
 }
