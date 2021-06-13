@@ -42,6 +42,6 @@ class PersonControllerTest {
                              + " \"bloodType\": \"A\"\n" +
                         "}"))
                 .andDo(MockMvcResultHandlers.print())
-                .andExpect(MockMvcResultMatchers.status().isOk());
+                .andExpect(MockMvcResultMatchers.status().isCreated());
     }
 }
