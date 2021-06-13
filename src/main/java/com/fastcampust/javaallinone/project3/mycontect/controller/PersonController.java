@@ -1,5 +1,6 @@
 package com.fastcampust.javaallinone.project3.mycontect.controller;
 
+import com.fastcampust.javaallinone.project3.mycontect.controller.dto.PersonDto;
 import com.fastcampust.javaallinone.project3.mycontect.domain.Person;
 import com.fastcampust.javaallinone.project3.mycontect.repository.PersonRepository;
 import com.fastcampust.javaallinone.project3.mycontect.service.PersonService;
@@ -29,6 +30,20 @@ public class PersonController {
     public void postPerson(@RequestBody Person person) {
 
         personService.put(person);
+
+        log.info("person -> {}", personRepository.findAll());
+
+    }
+
+    @PutMapping("/{id}")
+    public void modifyPerson(Long id, PersonDto personDto) {
+        personService.modify(id, personDto);
+        log.info("person -> {}", personRepository.findAll());
+    }
+
+    @PatchMapping("/{id}") //일부 리소스만 업데이트
+    public void modifyPerson(Long id, String name) {
+        personService.modify(id, name);
 
         log.info("person -> {}", personRepository.findAll());
 
